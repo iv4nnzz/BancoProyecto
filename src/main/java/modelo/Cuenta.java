@@ -43,5 +43,43 @@ public abstract class Cuenta {
     public abstract String imprimirDatos();
     public abstract String getTipoCuenta();
     
+    public String getNumero() {
+        return numero;
+    }
     
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
+    public String getNombreDueño() {
+        return nombreDueño;
+    }
+    
+    public void setNombreDueño(String nombreDueño) {
+        this.nombreDueño = nombreDueño;
+    }
+    
+    public double getSaldo() {
+        return saldo;
+    }
+    
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    public Fecha getFechaApertura() {
+        return fechaApertura;
+    }
+    
+    public void setFechaApertura(Fecha fechaApertura) {
+        this.fechaApertura = fechaApertura;
+    }
+    
+    @Override
+    public String toString() {
+        return "Número: " + numero + "\n" +
+               "Dueño: " + nombreDueño + "\n" +
+               "Saldo: $" + String.format("%.2f", saldo) + "\n" +
+               "Fecha Apertura: " + fechaApertura;
+    }
 }
