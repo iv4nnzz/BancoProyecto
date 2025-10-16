@@ -8,6 +8,11 @@ package modelo;
  *
  * @author 9spot
  */
-public class CuentaAhorros {
- 
+public class CuentaAhorros extends Cuenta {
+    private static final double SALDO_MINIMO = 0;
+    
+    public CuentaAhorros(String numero, String nombreDueño, double saldo, Fecha fechaApertura) {
+        super(numero, nombreDueño, saldo, fechaApertura);
+    }
+    
 }
