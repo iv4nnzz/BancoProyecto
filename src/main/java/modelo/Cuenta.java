@@ -8,6 +8,17 @@ package modelo;
  *
  * @author 9spot
  */
-public class Cuenta {
-
+public abstract class Cuenta {
+    protected String numero;
+    protected String nombreDueño;
+    protected double saldo;
+    protected Fecha fechaApertura;
+    
+    public Cuenta(String numero, String nombreDueño, double saldo, Fecha fechaApertura) {
+        this.numero = numero;
+        this.nombreDueño = nombreDueño;
+        this.saldo = saldo;
+        this.fechaApertura = fechaApertura;
+    }
+    
 }
