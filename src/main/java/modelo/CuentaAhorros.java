@@ -15,4 +15,21 @@ public class CuentaAhorros extends Cuenta {
         super(numero, nombreDueño, saldo, fechaApertura);
     }
     
+    @Override
+    public boolean validarRetiro(double monto) {
+        return monto > 0 && (this.saldo - monto) >= SALDO_MINIMO;
+    }
+    
+    @Override
+    public String imprimirDatos() {
+        return "===== CUENTA DE AHORROS =====\n" +
+               toString() + "\n" +
+               "Tipo: Ahorros\n" +
+               "Saldo Mínimo: $" + SALDO_MINIMO;
+    }
+    
+    @Override
+    public String getTipoCuenta() {
+        return "Ahorros";
+    }
 }
