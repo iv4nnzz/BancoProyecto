@@ -21,4 +21,27 @@ public abstract class Cuenta {
         this.fechaApertura = fechaApertura;
     }
     
+    public void consignar(double monto) {
+        if (monto > 0) {
+            this.saldo += monto;
+        }
+    }
+    
+    public boolean retirar(double monto) {
+        if (validarRetiro(monto)) {
+            this.saldo -= monto;
+            return true;
+        }
+        return false;
+    }
+    
+    public double obtenerSaldo() {
+        return this.saldo;
+    }
+    
+    public abstract boolean validarRetiro(double monto);
+    public abstract String imprimirDatos();
+    public abstract String getTipoCuenta();
+    
+    
 }
