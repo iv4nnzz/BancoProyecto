@@ -54,4 +54,31 @@ public class Vista {
             }
         }
     }
+
+    private void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Información", 
+                                     JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private String solicitarDato(String mensaje) {
+        return JOptionPane.showInputDialog(null, mensaje, "Entrada de Datos", 
+                                           JOptionPane.QUESTION_MESSAGE);
+    }
+    
+    private double solicitarNumero(String mensaje) {
+        String entrada = solicitarDato(mensaje);
+        if (entrada == null) return -1;
+        
+        try {
+            return Double.parseDouble(entrada);
+        } catch (NumberFormatException e) {
+            mostrarError("Debe ingresar un número válido");
+            return -1;
+        }
+    }
+    
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Error", 
+                                     JOptionPane.ERROR_MESSAGE);
+    }
 }
