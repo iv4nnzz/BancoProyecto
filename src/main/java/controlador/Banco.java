@@ -56,4 +56,12 @@ public class Banco {
         }
         return -1; 
     }
+    
+    public String obtenerDatosCuenta(String numeroCuenta) {
+        Cuenta cuenta = buscarCuenta(numeroCuenta);
+        if (cuenta != null) {
+            return cuenta.imprimirDatos();
+        }
+        return null;
+    }
 }
