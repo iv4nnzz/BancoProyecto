@@ -54,6 +54,57 @@ public class Vista {
             }
         }
     }
+    
+    private void crearCuenta() {
+        String[] tipos = {"Cuenta de Ahorros", "Cuenta Corriente"};
+        int tipoCuenta = JOptionPane.showOptionDialog(
+            null,
+            "Seleccione el tipo de cuenta:",
+            "Crear Cuenta",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            tipos,
+            tipos[0]
+        );
+        
+        if (tipoCuenta == -1) return; 
+        
+        String numero = solicitarDato("Ingrese el número de cuenta:");
+        if (numero == null || numero.trim().isEmpty()) return;
+        
+        if (banco.buscarCuenta(numero) != null) {
+            mostrarError("Ya existe una cuenta con ese número");
+            return;
+        }
+        
+        String nombre = solicitarDato("Ingrese el nombre del dueño:");
+        if (nombre == null || nombre.trim().isEmpty()) return;
+        
+        double saldoInicial = solicitarNumero("Ingrese el saldo inicial:");
+        if (saldoInicial < 0) return;
+        
+        Calendar cal = Calendar.getInstance();
+        Fecha fechaApertura = new Fecha(
+            cal.get(Calendar.DAY_OF_MONTH),
+            cal.get(Calendar.MONTH) + 1,
+            cal.get(Calendar.YEAR)
+        );
+        
+        Cuenta nuevaCuenta = null;
+        
+        if (tipoCuenta == 0) { 
+            nuevaCuenta = new CuentaAhorros(numero, nombre, saldoInicial, fechaApertura);
+        } else { 
+            double cupoSobregiro = solicitarNumero("Ingrese el cupo de sobregiro:");
+            if (cupoSobregiro < 0) return;
+            nuevaCuenta = new CuentaCorriente(numero, nombre, saldoInicial, fechaApertura, cupoSobregiro);
+        }
+        
+        banco.agregarCuenta(nuevaCuenta);
+        mostrarMensaje("Cuenta creada exitosamente!\n\n" + nuevaCuenta.imprimirDatos());
+    }
+    
     private void realizarConsignacion(String numeroCuenta) {
         double monto = solicitarNumero("Ingrese el monto a consignar:");
         if (monto <= 0) {
