@@ -48,4 +48,12 @@ public class Banco {
         }
         return false;
     }
+    
+    public double consultarSaldo(String numeroCuenta) {
+        Cuenta cuenta = buscarCuenta(numeroCuenta);
+        if (cuenta != null) {
+            return cuenta.obtenerSaldo();
+        }
+        return -1; 
+    }
 }
