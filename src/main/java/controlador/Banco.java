@@ -41,4 +41,11 @@ public class Banco {
         return false;
     }
     
+    public boolean realizarRetiro(String numeroCuenta, double monto) {
+        Cuenta cuenta = buscarCuenta(numeroCuenta);
+        if (cuenta != null) {
+            return cuenta.retirar(monto);
+        }
+        return false;
+    }
 }
