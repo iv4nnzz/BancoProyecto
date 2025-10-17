@@ -105,6 +105,52 @@ public class Vista {
         mostrarMensaje("Cuenta creada exitosamente!\n\n" + nuevaCuenta.imprimirDatos());
     }
     
+    private void menuOperaciones() {
+        String numeroCuenta = solicitarDato("Ingrese el número de cuenta:");
+        if (numeroCuenta == null || numeroCuenta.trim().isEmpty()) return;
+        
+        Cuenta cuenta = banco.buscarCuenta(numeroCuenta);
+        if (cuenta == null) {
+            mostrarError("No se encontró la cuenta con número: " + numeroCuenta);
+            return;
+        }
+        
+        boolean continuar = true;
+        while (continuar) {
+            String[] opciones = {"Consignar", "Retirar", "Consultar Saldo", 
+                                "Ver Información", "Volver"};
+            int seleccion = JOptionPane.showOptionDialog(
+                null,
+                "Cuenta: " + numeroCuenta + "\nSeleccione una operación:",
+                "Operaciones Bancarias",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+            );
+            
+            switch (seleccion) {
+                case 0: 
+                    realizarConsignacion(numeroCuenta);
+                    break;
+                case 1: 
+                    realizarRetiro(numeroCuenta);
+                    break;
+                case 2: 
+                    consultarSaldo(numeroCuenta);
+                    break;
+                case 3: 
+                    verInformacion(numeroCuenta);
+                    break;
+                case 4: 
+                case -1:
+                    continuar = false;
+                    break;
+            }
+        }
+    }
+    
     private void realizarConsignacion(String numeroCuenta) {
         double monto = solicitarNumero("Ingrese el monto a consignar:");
         if (monto <= 0) {
