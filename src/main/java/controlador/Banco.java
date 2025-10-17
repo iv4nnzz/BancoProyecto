@@ -31,4 +31,14 @@ public class Banco {
         }
         return null;
     }
+    
+    public boolean realizarConsignacion(String numeroCuenta, double monto) {
+        Cuenta cuenta = buscarCuenta(numeroCuenta);
+        if (cuenta != null && monto > 0) {
+            cuenta.consignar(monto);
+            return true;
+        }
+        return false;
+    }
+    
 }
