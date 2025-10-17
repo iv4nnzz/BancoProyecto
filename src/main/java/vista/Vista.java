@@ -69,6 +69,21 @@ public class Vista {
         }
     }
     
+    private void realizarRetiro(String numeroCuenta) {
+        double monto = solicitarNumero("Ingrese el monto a retirar:");
+        if (monto <= 0) {
+            mostrarError("El monto debe ser mayor a cero");
+            return;
+        }
+        
+        if (banco.realizarRetiro(numeroCuenta, monto)) {
+            mostrarMensaje("Retiro exitoso!\nNuevo saldo: $" + 
+                         String.format("%.2f", banco.consultarSaldo(numeroCuenta)));
+        } else {
+            mostrarError("Fondos insuficientes para realizar el retiro");
+        }
+    }
+  
     private void verInformacion(String numeroCuenta) {
         String info = banco.obtenerDatosCuenta(numeroCuenta);
         mostrarMensaje(info);
