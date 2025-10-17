@@ -22,5 +22,13 @@ public class Banco {
     public void agregarCuenta(Cuenta cuenta) {
         cuentas.add(cuenta);
     }
-   
+    
+    public Cuenta buscarCuenta(String numero) {
+        for (Cuenta cuenta : cuentas) {
+            if (cuenta.getNumero().equals(numero)) {
+                return cuenta;
+            }
+        }
+        return null;
+    }
 }
