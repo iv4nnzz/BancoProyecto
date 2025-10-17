@@ -83,7 +83,12 @@ public class Vista {
             mostrarError("Fondos insuficientes para realizar el retiro");
         }
     }
-  
+    
+    private void consultarSaldo(String numeroCuenta) {
+        double saldo = banco.consultarSaldo(numeroCuenta);
+        mostrarMensaje("Saldo actual: $" + String.format("%.2f", saldo));
+    }
+    
     private void verInformacion(String numeroCuenta) {
         String info = banco.obtenerDatosCuenta(numeroCuenta);
         mostrarMensaje(info);
