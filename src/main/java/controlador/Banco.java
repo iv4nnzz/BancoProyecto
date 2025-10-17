@@ -18,4 +18,9 @@ public class Banco {
     public Banco() {
         this.cuentas = new ArrayList<>();
     }
+    
+    public void agregarCuenta(Cuenta cuenta) {
+        cuentas.add(cuenta);
+    }
+   
 }
