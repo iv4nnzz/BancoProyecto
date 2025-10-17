@@ -64,4 +64,22 @@ public class Banco {
         }
         return null;
     }
+    
+    public String listarCuentas() {
+        if (cuentas.isEmpty()) {
+            return "No hay cuentas registradas";
+        }
+        
+        StringBuilder lista = new StringBuilder("===== LISTA DE CUENTAS =====\n");
+        for (Cuenta cuenta : cuentas) {
+            lista.append("\n").append(cuenta.getNumero())
+                 .append(" - ").append(cuenta.getNombreDueño())
+                 .append(" (").append(cuenta.getTipoCuenta()).append(")\n");
+        }
+        return lista.toString();
+    }
+    
+    public ArrayList<Cuenta> getCuentas() {
+        return cuentas;
+    }
 }
