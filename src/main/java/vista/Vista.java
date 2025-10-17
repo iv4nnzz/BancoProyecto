@@ -54,7 +54,26 @@ public class Vista {
             }
         }
     }
-
+    private void realizarConsignacion(String numeroCuenta) {
+        double monto = solicitarNumero("Ingrese el monto a consignar:");
+        if (monto <= 0) {
+            mostrarError("El monto debe ser mayor a cero");
+            return;
+        }
+        
+        if (banco.realizarConsignacion(numeroCuenta, monto)) {
+            mostrarMensaje("Consignación exitosa!\nNuevo saldo: $" + 
+                         String.format("%.2f", banco.consultarSaldo(numeroCuenta)));
+        } else {
+            mostrarError("Error al realizar la consignación");
+        }
+    }
+    
+    private void verInformacion(String numeroCuenta) {
+        String info = banco.obtenerDatosCuenta(numeroCuenta);
+        mostrarMensaje(info);
+    }
+    
     private void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "Información", 
                                      JOptionPane.INFORMATION_MESSAGE);
